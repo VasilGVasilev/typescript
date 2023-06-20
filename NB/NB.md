@@ -4,10 +4,15 @@
 
 - Typescript config:
  
-TS is transpiled to JS, but you can configure which ECMA -> 2015, 2016, 2017, etc:
-```sh "target": "ES2015"```
-TS can use CommonJS or ES module system:
-```sh "module": "commonjs" ```
+    TS is transpiled to JS, but you can configure which ECMA -> 2015, 2016, 2017, etc:
+    ```sh "target": "ES2015"```
+    TS can use CommonJS or ES module system:
+    ```sh "module": "commonjs" ```
 
-Best practice is to enable the following setting so no emit on error:
-```sh "noEmitOnError":"true"```
+    Best practice is to enable the following setting so no emit on error:
+    ```sh "noEmitOnError":"true"```
+
+- Types:
+
+Trick -> you can divide big numbers with underscore to make them more readable:
+```sh let sales: number = 123_456_789```
