@@ -12,6 +12,8 @@
     Best practice is to enable the following setting so no emit on error:
     ```sh "noEmitOnError":"true"```
 
+- TS debugging:
+https://www.youtube.com/watch?v=d56mG7DezGs&t=1048s
 - Types:
 
 Trick -> you can divide big numbers with underscore to make them more readable:
