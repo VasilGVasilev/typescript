@@ -16,3 +16,13 @@
 
 Trick -> you can divide big numbers with underscore to make them more readable:
 ```sh let sales: number = 123_456_789```
+
+No need to annotate variables:
+```sh let sales: number = 123_456_789```
+can be 
+```sh let sales = 123_456_789```
+TS infers the type to be a number out of the value you provided on definintion.
+
+If no type is declared and no initialization is set, the variable is of type **any**:
+```sh let level```
+But this is agains the whole idea of TS, due to any type disabling effectively types on the variable
