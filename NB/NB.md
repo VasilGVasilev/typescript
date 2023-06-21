@@ -28,3 +28,37 @@ TS infers the type to be a number out of the value you provided on definintion.
 If no type is declared and no initialization is set, the variable is of type **any**:
 ```sh let level```
 But this is agains the whole idea of TS, due to any type disabling effectively types on the variable
+
+TS suggests the methods to be used based on the type:
+![ts suggestions](https://github.com/VasilGVasilev/typescript/blob/main/NB/suggestionsBasedOnType.png?raw=true)
+
+array
+    ```sh let user: number[] = [1, 2]```
+
+
+tuple - fixed length array (basically you allocate each space for one value of one type )
+    ```sh let user: [number, string] = [1, 'Vasil']```
+    ! You should name each type and quantitity, the above means this tuple can have one number, one string in this order, you cannot add a string or number after that even though they are allowed types, the length is fixed to only two, to have anothe number, should name it:
+    ```sh let user: [number, string, number] = [1, 'Vasil', 2]```
+    There is a bug, tho:
+    ```sh 
+    const tup:[number, string] = [1, 'ax'];
+    tup.push(2);
+    console.log(tup)
+    ```
+    [LOG]: [1, "ax", 2] 
+
+Enums
+    Define a set of named constants - numeric or string-based:
+
+    ```sh
+    enum Direction {
+        Up = 1,
+        Down,
+        Left,
+        Right,
+    }
+    let myDirection: Direction = Direction.Up
+    ```
+    we have a numeric enum where Up is initialized with 1. All of the following members are auto-incremented from that point on.
+    tirck -> if you add const in front of enum, the transpiled JS code will be more optimised
