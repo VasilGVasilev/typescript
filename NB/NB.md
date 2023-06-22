@@ -101,3 +101,34 @@ Functions
         Sum(2); // Errors in code 'y' is possibly 'undefined'.
 ```  
 
+Objects
+
+```sh
+let employee: {
+    id: number,
+    name: string
+} = {id: 1, name: 'Vasil'}
+console.log( e.id)
+LOGS >> 1
+```
+    use readonly modifier to disable accidently modifiying the type of the object properties
+
+```sh
+let employee: {
+    readonly id: number,
+    name: string
+} = {id: 1, name: 'Vasil'}
+console.log( e.id)
+LOGS >> 1
+```
+
+    methods:
+
+```sh
+let employee: {
+    readonly id: number,
+    name: string,
+    came: (date: Date) => void
+} = {id: 1, name: 'Vasil', came: (date: Date) => {console.log(date)}}
+LOGS >> today's date
+```
