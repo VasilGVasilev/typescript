@@ -104,7 +104,7 @@ Functions
 Objects
 
 ```sh
-let employee: {
+let person: {
     id: number,
     name: string
 } = {id: 1, name: 'Vasil'}
@@ -114,7 +114,7 @@ LOGS >> 1
     use readonly modifier to disable accidently modifiying the type of the object properties
 
 ```sh
-let employee: {
+let person: {
     readonly id: number,
     name: string
 } = {id: 1, name: 'Vasil'}
@@ -125,10 +125,25 @@ LOGS >> 1
     methods:
 
 ```sh
-let employee: {
+let person: {
     readonly id: number,
     name: string,
     came: (date: Date) => void
 } = {id: 1, name: 'Vasil', came: (date: Date) => {console.log(date)}}
 LOGS >> today's date
+```
+
+Too verbose and hard-coded if we want to add other persons:
+```sh
+type Person = {
+    readonly id: number,
+    name: string,
+    came: (date: Date) => void
+}
+
+let person = Person{
+    id: 1, 
+    name: 'Vasil', 
+    came: (date: Date) => {console.log(date)
+}
 ```
