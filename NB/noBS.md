@@ -5,6 +5,7 @@ npm i typescript -D //adding ts compiler as a dev Dep
 npm i ts-node -D //allows you to run your TypeScript code directly without precompiling your TypeScript code to JavaScript.
 npx tsc -init //adding a ts.config file
 npx ts-node basics.ts //to run the app in the ts env
+npx tsc file.ts //compiles a .ts file into .js file
 ```
 
 or one-line globally
@@ -84,3 +85,5 @@ const format = (title: string, param: string | number) {
 }
 
 ```
+VERY IMPORTANT - typescript does type checking at compile time not runtime, the latter would be impossibly resource expensive. Thus, intersecting js and ts means that you have to have that compile time type checking.
+[misconception explained](https://youtu.be/-TsIUuA3yyE?t=829)
