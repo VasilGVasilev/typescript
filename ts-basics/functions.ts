@@ -4,6 +4,10 @@ function addNumbers(a: number,b: number){
 }
 export default addNumbers
 
-export const addString = (str1: string, str2: string) => {
+export const addString = (str1: string, str2: string ='') => {
     return `${str1} ${str2}`;
+}
+
+export const format = (title: string, param: string | number) => {
+    return `${title} ${param}`
 }

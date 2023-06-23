@@ -73,3 +73,14 @@ const ids: Record<number, string> = {
 }
 ids[30] = 'c'
 ```
+
+what if you want two types to be valid for same param?
+
+create a Union type:
+
+```sh
+const format = (title: string, param: string | number) {
+    return `${title} ${param}`
+}
+
+```
