@@ -1,11 +1,54 @@
 You can isntall typescript locally:
 ```sh
 npm init //for package.json
-npm i typescript -D //adding ts as a dev Dep
+npm i typescript -D //adding ts compiler as a dev Dep
 npm i ts-node -D //allows you to run your TypeScript code directly without precompiling your TypeScript code to JavaScript.
 npx tsc -init //adding a ts.config file
-
+npx ts-node basics.ts //to run the app in the ts env
 ```
 
 or one-line globally
 
+
+types vs interfaces for object initialization in TS:
+
+    In TypeScript, both interface and type are used to define object types, but they have some subtle differences in their behavior and usage.
+
+
+**Interface Syntax**:
+
+```sh
+    interface Person {
+        id: number;
+        name: string;
+        came: (date: Date) => void;
+    }
+```
+
+**Type Alias Syntax**:
+
+```sh
+    type Person = {
+        id: number;
+        name: string;
+        came: (date: Date) => void;
+    };
+```
+
+Extensibility: Interfaces are open to extension (OOP), meaning you can merge multiple declarations of the same interface together. On the other hand, **type aliases are not extensible and can't be merged**:
+
+```sh
+    interface Foo {
+        a: number;
+    }
+
+    interface Foo {
+        b: string;
+    }
+
+    const obj: Foo = {
+        a: 1,
+        b: 'hello',
+    };
+```
+    In the above example, the two interface declarations for Foo are merged, allowing the resulting object to have properties a and b.

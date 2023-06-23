@@ -141,9 +141,9 @@ type Person = {
     came: (date: Date) => void
 }
 
-let person = Person{
+let person: Person = {
     id: 1, 
     name: 'Vasil', 
-    came: (date: Date) => {console.log(date)
+    came: (date: Date) => {console.log(date)}
 }
 ```
