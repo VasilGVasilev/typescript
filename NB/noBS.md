@@ -52,3 +52,24 @@ Extensibility: Interfaces are open to extension (OOP), meaning you can merge mul
     };
 ```
     In the above example, the two interface declarations for Foo are merged, allowing the resulting object to have properties a and b.
+
+
+What if we want to add a property subsequently?
+
+```sh
+const ids = {
+    10: 'a',
+    20: 'b',
+}
+
+ids[30] = 'c'
+# Compiles an error
+
+# SOLUTION -> utility types, namely, Record whose property keys are Keys and whose property values are Type
+
+const ids: Record<number, string> = {
+    10: 'a',
+    20: 'b'
+}
+ids[30] = 'c'
+```
