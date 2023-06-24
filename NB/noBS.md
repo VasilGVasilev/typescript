@@ -52,7 +52,7 @@ Extensibility: Interfaces are open to extension (OOP), meaning you can merge mul
         b: 'hello',
     };
 ```
-    In the above example, the two interface declarations for Foo are merged, allowing the resulting object to have properties a and b.
+In the above example, the two interface declarations for Foo are merged, allowing the resulting object to have properties a and b.
 
 
 What if we want to add a property subsequently?
