@@ -13,7 +13,7 @@ or one-line globally
 
 types vs interfaces for object initialization in TS:
 
-    In TypeScript, both interface and type are used to define object types, but they have some subtle differences in their behavior and usage.
+In TypeScript, both interface and type are used to define object types, but they have some subtle differences in their behavior and usage.
 
 
 **Interface Syntax**:
