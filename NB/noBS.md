@@ -1,5 +1,5 @@
 You can isntall typescript locally:
-```sh
+```
 npm init //for package.json
 npm i typescript -D //adding ts compiler as a dev Dep
 npm i ts-node -D //allows you to run your TypeScript code directly without precompiling your TypeScript code to JavaScript.
@@ -18,7 +18,7 @@ In TypeScript, both interface and type are used to define object types, but they
 
 **Interface Syntax**:
 
-```sh
+```
 interface Person {
     id: number;
     name: string;
@@ -28,7 +28,7 @@ interface Person {
 
 **Type Alias Syntax**:
 
-```sh
+```
 type Person = {
     id: number;
     name: string;
@@ -38,7 +38,7 @@ type Person = {
 
 Extensibility: Interfaces are open to extension (OOP), meaning you can merge multiple declarations of the same interface together. On the other hand, **type aliases are not extensible and can't be merged**:
 
-```sh
+```
     interface Foo {
         a: number;
     }
@@ -57,7 +57,7 @@ In the above example, the two interface declarations for Foo are merged, allowin
 
 What if we want to add a property subsequently?
 
-```sh
+```
 const ids = {
     10: 'a',
     20: 'b',
@@ -79,7 +79,7 @@ what if you want two types to be valid for same param?
 
 create a Union type:
 
-```sh
+```
 const format = (title: string, param: string | number) {
     return `${title} ${param}`
 }

@@ -42,19 +42,19 @@ TS suggests the methods to be used based on the type:
 ![ts suggestions](https://github.com/VasilGVasilev/typescript/blob/main/NB/suggestionsBasedOnType.png?raw=true)
 
 array
-    ``` let user: number[] = [1, 2]```
+``` let user: number[] = [1, 2]```
 
 
 tuple - fixed length array (basically you allocate each space for one value of one type )
-    ``` let user: [number, string] = [1, 'Vasil']```
+``` let user: [number, string] = [1, 'Vasil']```
     ! You ould name each type and quantitity, the above means this tuple can have one number, one string in this order, you cannot add a string or number after that even though they are allowed types, the length is fixed to only two, to have anothe number, ould name it:
-    ``` let user: [number, string, number] = [1, 'Vasil', 2]```
+``` let user: [number, string, number] = [1, 'Vasil', 2]```
     There is a bug, tho:
-    ``` 
-    const tup:[number, string] = [1, 'ax'];
-    tup.pu(2);
-    console.log(tup)
-    ```
+``` 
+const tup:[number, string] = [1, 'ax'];
+tup.pu(2);
+console.log(tup)
+```
     [LOG]: [1, "ax", 2] 
 
 Enums
@@ -81,7 +81,7 @@ Functions
 
         Sum(2,3); // returns 5
 ```
-    VERY IMPORTANT -> turn on noImplicitReturns option in TS.config so that there is a check that catches undefined function returns:
+VERY IMPORTANT -> turn on noImplicitReturns option in TS.config so that there is a check that catches undefined function returns:
 ```
         function Sum(x: number) : number {
             if(x>5){
@@ -92,7 +92,7 @@ Functions
         Sum(7); // returns undefined due to noImplicitReturn not checked
 ```
 
-    make param optional via question mark BUT it only has superior error msg system, better not to resort to optional rather do default values:
+make param optional via question mark BUT it only has superior error msg system, better not to resort to optional rather do default values:
 ```
         function Sum(x: number, y?: number) : number {
             return x + y;
@@ -111,7 +111,7 @@ let person: {
 console.log( e.id)
 LOGS >> 1
 ```
-    use readonly modifier to disable accidently modifiying the type of the object properties
+use readonly modifier to disable accidently modifiying the type of the object properties
 
 ```
 let person: {
@@ -131,7 +131,7 @@ function printCoord(pt: { x: number; y: number }) {
 printCoord({ x: 3, y: 7 });
 ```
 
-    methods:
+methods:
 
 ```
 let person: {
