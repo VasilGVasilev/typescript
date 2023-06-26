@@ -85,5 +85,11 @@ const format = (title: string, param: string | number) {
 }
 
 ```
+A popular use-case for union types is to describe the set of string or number literals that a value is allowed to be:
+
+type WindowStates = "open" | "closed" | "minimized";
+type LockStates = "locked" | "unlocked";
+type PositiveOddNumbersUnderTen = 1 | 3 | 5 | 7 | 9;
+
 VERY IMPORTANT - typescript does type checking at compile time not runtime, the latter would be impossibly resource expensive. Thus, intersecting js and ts means that you have to have that compile time type checking.
 [misconception explained](https://youtu.be/-TsIUuA3yyE?t=829)
