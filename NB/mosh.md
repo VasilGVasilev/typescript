@@ -5,12 +5,12 @@
 - [Typescript config](https://www.typescriptlang.org/tsconfig) (compiler options - very helpful list with checks that make code more efficient) :
  
     TS is transpiled to JS, but you can configure which ECMA -> 2015, 2016, 2017, etc:
-```sh "target": "ES2015"```
+``` "target": "ES2015"```
     TS can use CommonJS or ES module system:
-```sh "module": "commonjs" ```
+``` "module": "commonjs" ```
 
     Best practice is to enable the following setting so no emit on error:
-```sh "noEmitOnError":"true"```
+``` "noEmitOnError":"true"```
 
 - TS debugging:
 https://www.youtube.com/watch?v=d56mG7DezGs&t=1048s
@@ -18,41 +18,41 @@ https://www.youtube.com/watch?v=d56mG7DezGs&t=1048s
 
 Primitive types:
     string:
-```sh let employeeName:string = 'John Smith'; ```
+``` let employeeName:string = 'John Smith'; ```
     number:
-```sh let first:number = 123;```
+``` let first:number = 123;```
     boolean:
-```sh let isPresent:boolean = true;```
+``` let isPresent:boolean = true;```
 
 
     Trick -> you can divide big numbers with underscore to make them more readable:
-```sh let sales: number = 123_456_789```
+``` let sales: number = 123_456_789```
 
     No need to annotate variables:
-```sh let sales: number = 123_456_789```
+``` let sales: number = 123_456_789```
     can be 
-```sh let sales = 123_456_789```
+``` let sales = 123_456_789```
     TS infers the type to be a number out of the value you provided on definintion.
 
     If no type is declared and no initialization is set, the variable is of type **any**:
-```sh let level```
+``` let level```
     But this is agains the whole idea of TS, due to any type disabling effectively types on the variable
 
 TS suggests the methods to be used based on the type:
 ![ts suggestions](https://github.com/VasilGVasilev/typescript/blob/main/NB/suggestionsBasedOnType.png?raw=true)
 
 array
-    ```sh let user: number[] = [1, 2]```
+    ``` let user: number[] = [1, 2]```
 
 
 tuple - fixed length array (basically you allocate each space for one value of one type )
-    ```sh let user: [number, string] = [1, 'Vasil']```
-    ! You should name each type and quantitity, the above means this tuple can have one number, one string in this order, you cannot add a string or number after that even though they are allowed types, the length is fixed to only two, to have anothe number, should name it:
-    ```sh let user: [number, string, number] = [1, 'Vasil', 2]```
+    ``` let user: [number, string] = [1, 'Vasil']```
+    ! You ould name each type and quantitity, the above means this tuple can have one number, one string in this order, you cannot add a string or number after that even though they are allowed types, the length is fixed to only two, to have anothe number, ould name it:
+    ``` let user: [number, string, number] = [1, 'Vasil', 2]```
     There is a bug, tho:
-    ```sh 
+    ``` 
     const tup:[number, string] = [1, 'ax'];
-    tup.push(2);
+    tup.pu(2);
     console.log(tup)
     ```
     [LOG]: [1, "ax", 2] 
@@ -60,7 +60,7 @@ tuple - fixed length array (basically you allocate each space for one value of o
 Enums
     Define a set of named constants - numeric or string-based:
 
-    ```sh
+    ```
     enum Direction {
         Up = 1,
         Down,
@@ -74,7 +74,7 @@ Enums
 
 Functions
     -> Function with Parameter and Return Types (each param and return has its type annotated)
-```sh
+```
         function Sum(x: number, y: number) : number {
             return x + y;
         }
@@ -82,7 +82,7 @@ Functions
         Sum(2,3); // returns 5
 ```
     VERY IMPORTANT -> turn on noImplicitReturns option in TS.config so that there is a check that catches undefined function returns:
-```sh
+```
         function Sum(x: number) : number {
             if(x>5){
                 return 6;
@@ -93,7 +93,7 @@ Functions
 ```
 
     make param optional via question mark BUT it only has superior error msg system, better not to resort to optional rather do default values:
-```sh
+```
         function Sum(x: number, y?: number) : number {
             return x + y;
         }
@@ -103,7 +103,7 @@ Functions
 
 Objects
 
-```sh
+```
 let person: {
     id: number,
     name: string
@@ -113,7 +113,7 @@ LOGS >> 1
 ```
     use readonly modifier to disable accidently modifiying the type of the object properties
 
-```sh
+```
 let person: {
     readonly id: number,
     name: string
@@ -122,9 +122,18 @@ console.log( e.id)
 LOGS >> 1
 ```
 
+object passed in in a function as a param:
+```
+function printCoord(pt: { x: number; y: number }) {
+  console.log("The coordinate's x value is " + pt.x);
+  console.log("The coordinate's y value is " + pt.y);
+}
+printCoord({ x: 3, y: 7 });
+```
+
     methods:
 
-```sh
+```
 let person: {
     readonly id: number,
     name: string,
@@ -134,7 +143,7 @@ LOGS >> today's date
 ```
 
 Too verbose and hard-coded if we want to add other persons:
-```sh
+```
 type Person = {
     readonly id: number,
     name: string,

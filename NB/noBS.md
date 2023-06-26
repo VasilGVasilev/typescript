@@ -19,21 +19,21 @@ In TypeScript, both interface and type are used to define object types, but they
 **Interface Syntax**:
 
 ```sh
-    interface Person {
-        id: number;
-        name: string;
-        came: (date: Date) => void;
-    }
+interface Person {
+    id: number;
+    name: string;
+    came: (date: Date) => void;
+}
 ```
 
 **Type Alias Syntax**:
 
 ```sh
-    type Person = {
-        id: number;
-        name: string;
-        came: (date: Date) => void;
-    };
+type Person = {
+    id: number;
+    name: string;
+    came: (date: Date) => void;
+};
 ```
 
 Extensibility: Interfaces are open to extension (OOP), meaning you can merge multiple declarations of the same interface together. On the other hand, **type aliases are not extensible and can't be merged**:
