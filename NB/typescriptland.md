@@ -36,3 +36,13 @@ const strings = ["hello", "world"];
 const firstString = getFirstElement(strings); // inferred type: string
 
 ```
+Most famous generic - FC
+In TypeScript, FC is a generic type provided by the React library. It stands for FunctionComponent and is used to define functional components in React with type annotations for the props they expect to receive:
+
+```sh
+const Person: FC<PersonProps> = ({}) => {
+    return <div>Child<div>
+}
+
+export default Child
+```
