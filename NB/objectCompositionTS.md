@@ -45,7 +45,7 @@ fish.swim(); // Output: "Swimming!"
 ```
 
 NB: why we assign the method in the constructor?
-see whyAssignInConstructor
+see whyAssignInConstructor.md
 
 In the above example, we define two separate interfaces: **CanFly** and **CanSwim**. These interfaces describe the behavior each object should have. Then, we create separate objects (flyableMixin and swimmableMixin) that implement the respective behavior.
 
