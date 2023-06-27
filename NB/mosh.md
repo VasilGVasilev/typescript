@@ -146,7 +146,8 @@ let person: {
 LOGS >> today's date
 ```
 
-Too verbose and hard-coded if we want to add other persons:
+Too verbose and hard-coded if we want to add other persons
+Type Aliases
 ```sh
 type Person = {
     readonly id: number,

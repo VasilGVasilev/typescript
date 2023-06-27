@@ -2,6 +2,8 @@ TypeScript never changes the runtime behavior of JavaScript code.
 
 Roughly speaking, once TypeScript’s compiler is done with checking your code, it erases the types to produce the resulting “compiled” code. This means that once your code is compiled, the resulting plain JS code has no type information.
 
+A big advantage of static types in TS is that in JavaScript, if you access a property that doesn’t exist, you’ll get the value undefined rather than a runtime error, in TS you will get a compile time error.
+
 Composing types
 There are several ways to have more than one type. One of them is the unions. You can declare that a type could be one of many types.
 
@@ -65,3 +67,61 @@ This expression is not callable.
 ```
 
 The strictNullChecks flag makes handling null and undefined more explicit, and spares us from worrying about whether we forgot to handle null and undefined.
+
+**Objects**
+
+- optional properties
+You can specify that some of their properties are optional:
+```sh
+function printName(obj: { first: string; last?: string }) {
+  # ...
+}
+# Both OK
+printName({ first: "Bob" });
+printName({ first: "Alice", last: "Alisson" });
+```
+
+BUT when using ? CHECK for undefined manually:
+```sh
+function printName(obj: { first: string; last?: string }) {
+# Error - might crash if 'obj.last' wasn't provided!
+  console.log(obj.last.toUpperCase());
+# obj.last is possibly undefined
+  if (obj.last !== undefined) {
+    #OK
+    console.log(obj.last.toUpperCase());
+  }
+ 
+#A safe alternative using modern JavaScript syntax:
+  console.log(obj.last?.toUpperCase());
+}
+```
+
+**Union types**
+
+```sh
+function printId(id: number | string) {
+  console.log("Your ID is: " + id);
+}
+# OK
+printId(101);
+# OK
+printId("202");
+```
+
+BUT TypeScript will only allow an operation if it is valid for every member of the union:
+```sh
+function printId(id: number | string) {
+  console.log(id.toUpperCase());
+# Property 'toUpperCase' does not exist on type 'string | number'.
+# Property 'toUpperCase' does not exist on type 'number'.
+
+}
+```
+
+
+**Type Aliases**
+A type alias is exactly that - a name for any type. You can actually use a type alias to give a name to any type at all, not just an object type:
+```sh
+type ID = number | string;
+```
