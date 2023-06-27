@@ -125,3 +125,23 @@ A type alias is exactly that - a name for any type. You can actually use a type 
 ```sh
 type ID = number | string;
 ```
+
+**Interfaces**
+- An interface in TypeScript defines a contract that an object must adhere to. . By using interfaces, you can enforce a certain structure and ensure that objects conform to a particular shape, promoting code maintainability and reducing errors.
+- main benefit of interface over type is exentsability and adding new properties
+
+TS is only interested in the structure of the value passed. 
+
+```sh
+interface Point {
+  x: number;
+  y: number;
+}
+ 
+function printCoord(pt: Point) {
+  console.log("The coordinate's x value is " + pt.x);
+  console.log("The coordinate's y value is " + pt.y);
+}
+ 
+printCoord({ x: 100, y: 100 });
+```
