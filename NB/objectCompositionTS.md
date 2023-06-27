@@ -44,6 +44,9 @@ fish.swim(); // Output: "Swimming!"
 
 ```
 
+NB: why we assign the method in the constructor?
+see whyAssignInConstructor
+
 In the above example, we define two separate interfaces: **CanFly** and **CanSwim**. These interfaces describe the behavior each object should have. Then, we create separate objects (flyableMixin and swimmableMixin) that implement the respective behavior.
 
 Next, we use object composition to combine these behavior objects with our Bird and Fish classes. By using Object.assign(), we can copy the properties and methods from the behavior objects to the instances of our classes. This approach allows the classes to inherit behavior without the limitations and **tight coupling** of traditional class inheritance. 
