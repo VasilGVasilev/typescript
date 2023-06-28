@@ -145,3 +145,40 @@ function printCoord(pt: Point) {
  
 printCoord({ x: 100, y: 100 });
 ```
+
+**Narrowing done via typeof guards**
+
+```sh
+function padLeft(padding: number | string, input: string) {
+  if (typeof padding === "number") {
+    return " ".repeat(padding) + input;
+  }
+  return padding + input;
+}
+```
+
+- Coercing values to booleans
+
+You can always coerce values to booleans by running them through the Boolean function, or by using the shorter double-Boolean negation '!!'. (The latter has the advantage that TypeScript infers a narrow literal boolean type true, while inferring the first as type boolean.)
+```sh
+# both of these result in 'true'
+Boolean("hello"); # type: boolean, value: true
+!!"world"; # type: true,    value: true
+```
+
+
+- overly prescriptive
+
+```sh
+function printAll(strs: string | string[] | null) {
+  if (strs && typeof strs === "object") {
+    for (const s of strs) {
+      console.log(s);
+    }
+  } else if (typeof strs === "string") {
+    console.log(strs);
+  }
+}
+```
+
+TypeScript can often help you catch bugs early on, but if you choose to do nothing with a value, there’s only so much that it can do without being overly prescriptive. Another way to go is using a **linter**.
