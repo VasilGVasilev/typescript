@@ -315,6 +315,47 @@ const parsed = map(["1", "2", "3"], (n) => parseInt(n));
 ```
 
 
-*You can also put constraints on the type limiting legal kind of types*
+*You can also put constraints on the type limiting legal kind of types, constrains are resolved by TS, so be mindful of this powerful tool*
+
+
+**Optional Parameters**
+either use the ? to escape empty, thus, undefined value
+```sh
+function f(x?: number) {
+  # ...
+}
+f(); # OK
+f(10); # OK
+```
+or set a default to capture empty, thus, undefined value
+```sh
+function f(x = 10) {
+  # ...
+}
+```
+
+**Optional Parameters in Callbacks**
+
+If you use optional params in callbacks and subsequently try to call a method on that param, TS will print an error:
+
+```sh
+function myForEach(arr: any[], callback: (arg: any, index?: number) => void) {
+  for (let i = 0; i < arr.length; i++) {
+    // I don't feel like providing the index today
+    callback(arr[i]);
+  }
+}
+
+
+```
+
+```sh
+myForEach([1, 2, 3], (a, i) => {
+  console.log(i.toFixed());
+'i' is possibly 'undefined'.
+
+});
+```
+THUS, when writing a function type for a callback, never write an optional parameter unless you intend to call the function without passing that argument.
 
 
