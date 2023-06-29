@@ -4,13 +4,24 @@ Roughly speaking, once TypeScript’s compiler is done with checking your code, 
 
 A big advantage of static types in TS is that in JavaScript, if you access a property that doesn’t exist, you’ll get the value undefined rather than a runtime error, in TS you will get a compile time error.
 
-Composing types
+**Composing types**
 There are several ways to have more than one type. One of them is the unions. You can declare that a type could be one of many types.
 
 ```sh
 type WindowStates = "open" | "closed" | "minimized";
 ```
 
+**Return type of functions**
+function name(numbers): returnTypeOfFunction {
+
+}
+```sh
+function getFirstElementOfNumber(numbers: number[]): number {
+  return numbers[0];
+}
+```
+
+**Generics**
 Another way is the OOP language concept of generics. Instead of writing for example a separate function for each type, you can use generics to create a single function that can work with any type:
 
 FROM THIS:
@@ -51,7 +62,7 @@ const Person: FC<PersonProps> = ({}) => {
 export default Child
 ```
 
-Dynamic vs static typing
+**Dynamic vs static typing**
     JavaScript only truly provides dynamic typing - **running the code** to see what happens. Typescript is to use a static type system to make predictions about what code is expected **before it runs**.
 
 ```sh
@@ -237,3 +248,73 @@ fn: (a: string) => void
 we have a 'fn' of type function '(a: string) => void'
 
 Keep in mind that fn is just a convention and can be replaced with any other valid identifier that describes the purpose or role of the function parameter. The choice of fn as an abbreviation is not enforced by the TypeScript language itself but is often used by developers to indicate a generic function type.
+
+**Siganture Calls**
+In JavaScript, functions can have properties (They are the instances of the Function type. Because functions are objects, they have properties and methods like other objects - length and prototype) in addition to being callable. type expression syntax doesn’t allow for declaring properties. If we want to describe something callable with properties, we need a *call signature*:
+
+```sh
+#use ':' between the parameter list and the return type rather than '=>'
+type DescribableFunction = {
+  description: string;
+  (someArg: number): boolean;
+};
+
+function doSomething(fn: DescribableFunction) {
+  console.log(fn.description + " returned " + fn(6));
+}
+ 
+function myFunc(someArg: number) {
+  return someArg > 3;
+}
+myFunc.description = "default description";
+ 
+doSomething(myFunc);
+[LOG]: "default description returned true" 
+```
+
+we call doSomething with myFunc as a param which is a function that also has a param - someArg. Given the fact that doSomething accepts a special type fn: DescibableFunction as a param, myFunc has to adhere to this type. myFunc has the someArg part, but after the declaration of myFunc we see that a property description is manually added 'myFunc.description = "default description";', thus, making the whole code legal.
+
+**Generic functions**
+
+```sh
+function firstElement<Type>(arr: Type[]): Type | undefined {
+  return arr[0];
+}
+
+# s is of type 'string'
+const s = firstElement(["a", "b", "c"]); #[LOG]: "a" 
+# n is of type 'number'
+const n = firstElement([1, 2, 3]); #[LOG]: 1 
+# u is of type undefined
+const u = firstElement([]); #[LOG]: undefined 
+
+```
+
+Generics are used when we expect more than one value type, same goes for function returns:
+```sh
+function firstElement<Type>(arr: Type[]): Type | undefined {
+  return arr[0];
+}
+```
+
+ <Type> specifies a generic type parameter named Type. This allows the function to work with any type of array (arr) and return an element of the same type.
+ if you console.log the type of firstElement it will be function, because typeof returns the runtime, not compile time type, the compiling version of TS is replaced with plain JS at runtime.
+
+ Thus, to be fully typed you have to define the function <Type> the params : Type[] and the return type : Type | undefined {}
+
+you could also infer separate input and output types:
+
+```sh
+function map<Input, Output>(arr: Input[], func: (arg: Input) => Output): Output[] {
+  return arr.map(func);
+}
+ 
+# Parameter 'n' is of type 'string'
+# 'parsed' is of type 'number[]'
+const parsed = map(["1", "2", "3"], (n) => parseInt(n));
+```
+
+
+*You can also put constraints on the type limiting legal kind of types*
+
+
