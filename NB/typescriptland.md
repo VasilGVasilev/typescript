@@ -213,3 +213,27 @@ function padLeft(padding: number | string, input: string) {
 ```
 
 padLeft returns from within its first if block. TypeScript was able to analyze this code and see that the rest of the body (return padding + input;) is unreachable in the case where padding is a number. As a result, it was able to remove number from the type of padding (narrowing from string | number to string) for the rest of the function.
+
+
+**Function type expression**
+
+```sh
+function greeter(fn: (a: string) => void) {
+  fn("Hello, World");
+}
+ 
+function printToConsole(s: string) {
+  console.log(s);
+}
+ 
+greeter(printToConsole);
+```
+
+at first this may remind you of function declaration instead of expression but see:
+```sh
+fn: (a: string) => void
+```
+
+we have a 'fn' of type function '(a: string) => void'
+
+Keep in mind that fn is just a convention and can be replaced with any other valid identifier that describes the purpose or role of the function parameter. The choice of fn as an abbreviation is not enforced by the TypeScript language itself but is often used by developers to indicate a generic function type.
