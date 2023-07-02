@@ -504,3 +504,74 @@ interface AddressWithUnit extends BasicAddress {
   unit: string;
 }
 ```
+
+**Generic object types**
+Type is just a placeholder for when we actually impregnate Box with a type:
+
+```sh
+interface Box<Type> {
+  contents: Type;
+}
+interface StringBox {
+  contents: string;
+}
+ 
+let boxA: Box<string> = { contents: "hello" };
+boxA.contents;
+        
+          #(property) Box<string>.contents: string
+ 
+let boxB: StringBox = { contents: "world" };
+boxB.contents;
+        
+          #(property) StringBox.contents: string
+```
+
+you can limit the types allowed by the generic:
+
+```sh
+type AllowedTypes = string | number;
+
+interface ObjectType<T extends AllowedTypes> {
+  [key: string]: T;
+}
+
+const obj1: ObjectType<string> = {
+  foo: 'Hello',
+};
+
+const obj2: ObjectType<boolean> = {
+  foo: false,
+};
+
+#Error: Type 'boolean' does not satisfy the constraint 'AllowedTypes'.
+```
+
+
+**Array Type**
+
+```sh
+let arr: number[] = [1, 2, 3] === let arr: Array<number> = [1, 2, 3]
+let arr: string[] = ['a', 'b', 'c' ] === let arr: Array<string> = ['a', 'b', 'c' ]
+```
+
+
+**Tuple Type**
+
+```sh
+type StringNumberPair = [string, number];
+
+function doSomething(pair: [string, number]) {
+  const a = pair[0];
+       
+const a: string
+  const b = pair[1];
+       
+const b: number
+  # ...
+}
+ 
+doSomething(["hello", 42]);
+```
+
+Here, StringNumberPair is a tuple type of string and number. Like ReadonlyArray, it has no representation at runtime, but is significant to TypeScript. To the type system, StringNumberPair describes arrays whose 0 index contains a string and whose 1 index contains a number.
