@@ -359,3 +359,35 @@ myForEach([1, 2, 3], (a, i) => {
 THUS, when writing a function type for a callback, never write an optional parameter unless you intend to call the function without passing that argument.
 
 
+**Objects**
+
+- anonymous:
+```sh
+function greet(person: { name: string; age: number }) {
+  return "Hello " + person.name;
+}
+```
+
+-named via interface:
+```sh
+interface Person {
+  name: string;
+  age: number;
+}
+ 
+function greet(person: Person) {
+  return "Hello " + person.name;
+}
+```
+
+- named via type alias:
+```sh
+type Person = {
+  name: string;
+  age: number;
+};
+ 
+function greet(person: Person) {
+  return "Hello " + person.name;
+}
+```
