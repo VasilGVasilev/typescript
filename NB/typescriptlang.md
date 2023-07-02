@@ -368,7 +368,7 @@ function greet(person: { name: string; age: number }) {
 }
 ```
 
--named via interface:
+- named via interface:
 ```sh
 interface Person {
   name: string;
@@ -391,3 +391,101 @@ function greet(person: Person) {
   return "Hello " + person.name;
 }
 ```
+
+Object deconstruction:
+
+```sh
+interface PaintOptions {
+  shape: Shape;
+  xPos?: number;
+  yPos?: number;
+}
+
+function paintShape({ shape, xPos = 0, yPos = 0 }: PaintOptions) {
+  console.log("x coordinate at", xPos);
+                                #(parameter) xPos: number
+  console.log("y coordinate at", yPos);
+                                #(parameter) yPos: number
+}
+```
+
+**Property modifiers**
+
+optional properties (?):
+
+```sh
+interface PaintOptions {
+  shape: Shape;
+  xPos?: number;
+  yPos?: number;
+}
+```
+
+readonly properties (readonly) - While it won’t change any behavior at runtime, a property marked as readonly can’t be written to during type-checking:
+
+```sh
+interface SomeType {
+  readonly prop: string;
+}
+ 
+function doSomething(obj: SomeType) {
+  # We can read from 'obj.prop'.
+  console.log(`prop has the value '${obj.prop}'.`);
+ 
+  # But we can't re-assign it.
+  obj.prop = "hello";
+#Cannot assign to 'prop' because it is a read-only property.
+}
+```
+
+Readonly does not mean totally immutable - CAN change internal contents, but CANNOT re-write them:
+
+```sh
+interface Home {
+  readonly resident: { name: string; age: number };
+}
+ 
+function visitForBirthday(home: Home) {
+  # We can read and update properties from 'home.resident'.
+  console.log(`Happy birthday ${home.resident.name}!`);
+  home.resident.age++;
+}
+ 
+function evict(home: Home) {
+  # But we can't write to the 'resident' property itself on a 'Home'.
+  home.resident = {
+#Cannot assign to 'resident' because it is a read-only property.
+
+    name: "Victor the Evictor",
+    age: 42,
+  };
+}
+
+```
+NB: resident is readonly, its properties, however, are still mutable
+
+**Excess property checks**
+
+```sh
+interface SquareConfig {
+  color?: string;
+  width?: number;
+}
+ 
+function createSquare(config: SquareConfig): { color: string; area: number } {
+  return {
+    color: config.color || "red",
+    area: config.width ? config.width * config.width : 20,
+  };
+}
+ 
+let mySquare = createSquare({ colour: "red", width: 100 });
+#Argument of type '{ colour: string; width: number; }' is not assignable to parameter of type 'SquareConfig'.
+#Object literal may only specify known properties, but 'colour' does not exist in type 'SquareConfig'. Did you mean to write 'color'?
+```
+
+You could argue that this program is correctly typed, since the width properties are compatible, there’s no color property present, and the extra colour property is insignificant.
+
+-> However, TypeScript takes the stance that there’s probably a bug in this code. Object literals get special treatment and undergo excess property checking when assigning them to other variables, or passing them as arguments, but you can fix the definition of SquareConfig to accept both color and colour.
+
+
