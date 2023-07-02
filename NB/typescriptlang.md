@@ -489,3 +489,18 @@ You could argue that this program is correctly typed, since the width properties
 -> However, TypeScript takes the stance that there’s probably a bug in this code. Object literals get special treatment and undergo excess property checking when assigning them to other variables, or passing them as arguments, but you can fix the definition of SquareConfig to accept both color and colour.
 
 
+**Extending Types**
+
+```sh
+interface BasicAddress {
+  name?: string;
+  street: string;
+  city: string;
+  country: string;
+  postalCode: string;
+}
+ 
+interface AddressWithUnit extends BasicAddress {
+  unit: string;
+}
+```
