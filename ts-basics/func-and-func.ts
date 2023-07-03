@@ -43,7 +43,7 @@ console.log(adder(1));
 function createAdder(num: number){
     return (val: number) => val + num;
 }
-const addOne = createAdder(1); // ~~ anon function (val: number) => val + 1;
+const addOne = createAdder(1); // ~~ captures anon function with captured value of 1 (val: number) => val + 1;
 
 console.log(addOne(55)); // ~~ anon function (55) => 55 + 1
 
