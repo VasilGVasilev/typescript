@@ -91,5 +91,5 @@ type WindowStates = "open" | "closed" | "minimized";
 type LockStates = "locked" | "unlocked";
 type PositiveOddNumbersUnderTen = 1 | 3 | 5 | 7 | 9;
 
-VERY IMPORTANT - typescript does type checking at compile time not runtime, the latter would be impossibly resource expensive. Thus, intersecting js and ts means that you have to have that compile time type checking.
+VERY IMPORTANT - types exist only until compile time, so conditional checking of 'typeof' will be executed at runtime
 [misconception explained](https://youtu.be/-TsIUuA3yyE?t=829)
