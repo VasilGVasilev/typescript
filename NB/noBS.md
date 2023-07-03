@@ -93,3 +93,15 @@ type PositiveOddNumbersUnderTen = 1 | 3 | 5 | 7 | 9;
 
 VERY IMPORTANT - types exist only until compile time, so conditional checking of 'typeof' will be executed at runtime
 [misconception explained](https://youtu.be/-TsIUuA3yyE?t=829)
+
+
+**Optionals**
+if you use options as a function param, make it optional in the return, too:
+
+```sh
+function addWithCallback(x: number, y: number, callback?: () => void) {
+    console.log([x,y]);
+    callback?.();
+}
+```
+
