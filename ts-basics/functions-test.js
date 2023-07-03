@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var functions_1 = require("./functions");
+console.log((0, functions_1.default)(1, 2));
+console.log((0, functions_1.addString)('hello', 'world'));
+console.log((0, functions_1.addString)('one'));
+console.log((0, functions_1.format)('a', 3));
+console.log((0, functions_1.format)('a', 'b'));
+console.log((0, functions_1.fetchData)('aaa'));
+console.log((0, functions_1.getName)());
