@@ -23,6 +23,7 @@ function getFirstElementOfNumber(numbers: number[]): number {
 
 **Generics**
 
+Always put the special syntax <someGeneric> after name of object you want to make generic someObj<T>
 Another way is the OOP language concept of generics. Instead of writing for example a separate function for each type, you can use generics to create a single function that can work with any type.
 To define a generic type or function, you use angle brackets (<>) and a type parameter. A type parameter is a placeholder for a specific type that will be provided when using the generic:
 
