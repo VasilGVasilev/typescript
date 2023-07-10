@@ -22,7 +22,9 @@ function getFirstElementOfNumber(numbers: number[]): number {
 ```
 
 **Generics**
-Another way is the OOP language concept of generics. Instead of writing for example a separate function for each type, you can use generics to create a single function that can work with any type:
+
+Another way is the OOP language concept of generics. Instead of writing for example a separate function for each type, you can use generics to create a single function that can work with any type.
+To define a generic type or function, you use angle brackets (<>) and a type parameter. A type parameter is a placeholder for a specific type that will be provided when using the generic:
 
 FROM THIS:
 ```sh
@@ -49,7 +51,9 @@ const strings = ["hello", "world"];
 const firstString = getFirstElement(strings); // inferred type: string
 
 ```
-Most famous generic - FC //from Josh rtied coding - A trick every React Developer should know: ref Forwarding
+Generics is like narrowing down from type 'any' to 'type 'any of the few allowed' and the focus is more on consistency of the return type of the function.
+
+Most famous generic - FC //from Josh tried coding - A trick every React Developer should know: ref Forwarding
 In TypeScript, FC is a generic type provided by the React library. It stands for FunctionComponent and is used to define functional components in React with type annotations for the props they expect to receive:
 
 ```sh

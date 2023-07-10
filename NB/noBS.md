@@ -105,3 +105,23 @@ function addWithCallback(x: number, y: number, callback?: () => void) {
 }
 ```
 
+**Generics**
+T is a placeholder for an inferred type or set when intializing <> is crucial during definition but also for initial legal values:
+
+```sh
+function simpleGenericState<T>(initial: T): [() => T, (v: T) => void]{
+    let val: T = initial;
+    return [
+        () => val,
+        (v: T) => val = v
+    ]
+}
+
+# inferred boolean value
+const [st1getter, st1setter] = simpleGenericState(true)
+# intialized to be string or number ONLY
+const [st4getter, st4setter] = simpleGenericState<string | number>('a')
+
+
+```
+

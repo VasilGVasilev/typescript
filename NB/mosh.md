@@ -43,7 +43,7 @@ Primitive types:
     But this is agains the whole idea of TS, due to any type disabling effectively types on the variable
 
 TS suggests the methods to be used based on the type:
-![ts suggestions](https://github.com/VasilGVasilev/typescript/blob/main/NB/suggestionsBasedOnType.png?raw=true)
+[ts suggestions](https://github.com/VasilGVasilev/typescript/blob/main/NB/suggestionsBasedOnType.png?raw=true)
 
 array
     ```sh let user: number[] = [1, 2]```
