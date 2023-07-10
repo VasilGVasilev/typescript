@@ -27,3 +27,43 @@ const [st3getter, st3setter] = simpleGenericState('a')
 const [st4getter, st4setter] = simpleGenericState<string | number>('a')
 
 st4setter(1)
+
+
+// Make an interface generic
+interface Rank<RankItem>{
+    item: RankItem;
+    rank: number;
+}
+
+function ranker<RankItem>(
+    items: RankItem[],
+    rank: (v: RankItem) => number
+): RankItem[] {
+    const ranks: Rank<RankItem>[] = items.map((item) => ({
+        item,
+        rank: rank(item),
+    }));
+
+    ranks.sort((a, b) => a.rank - b.rank);
+
+    return ranks.map((rank) => rank.item);
+}
+
+interface Pokemon {
+    name: string,
+    hp: number
+}
+
+const pokemon: Pokemon[] = [
+    {
+        name: 'Bulbasaur',
+        hp: 20
+    },
+    {
+        name: 'Megasaur',
+        hp: 5
+    }
+]
+
+const ranks = ranker(pokemon, ({ hp }) => hp);
+console.log(ranks);
