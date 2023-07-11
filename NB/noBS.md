@@ -125,3 +125,23 @@ const [st4getter, st4setter] = simpleGenericState<string | number>('a')
 
 ```
 
+**Unknown**
+Unknown is like *any* type but it has stricter approach, for example:
+
+```sh
+let value: any;
+
+value.foo.bar; // OK
+value.trim(); // OK
+value(); // OK
+new value(); // OK
+value[0][1]; // OK
+
+let value: unknown;
+
+value.foo.bar; // Error
+value.trim(); // Error
+value(); // Error
+new value(); // Error
+value[0][1]; // Erro
+```
