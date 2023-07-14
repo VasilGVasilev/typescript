@@ -67,6 +67,11 @@ const Person: FC<PersonProps> = ({}) => {
 export default Child
 ```
 
+Functional Components type
+
+Why cannot we just type *const Person<PersonProps>* -> because const Person is just a variable, thus, you need to explicitly state its type with ':', and here the variable holds a react component, but *const Person: FC* does not suffice, since it will be inferred given the following syntax with params and function. The focus with typescript is that we want to set the types of the props. Therefore, here we write the *: FC* part so that we can write the props.
+The end result being *const Props: FC<PersonProps>* -> name of var annotated by via ':' to be of type FC which on its own accepts generic type <PersonProps> as a type for the component's props.
+
 **Dynamic vs static typing**
     JavaScript only truly provides dynamic typing - **running the code** to see what happens. Typescript is to use a static type system to make predictions about what code is expected **before it runs**.
 
